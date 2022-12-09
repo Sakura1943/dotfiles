@@ -2,10 +2,10 @@
 ----
 
 # Personal configuration
-    - config/*
-    $HOME/.config/*
-    - usr/*
-    /usr/*
+- config/*
+$HOME/.config/*
+- usr/*
+/usr/*
 
 ----
 ## 💳 License
