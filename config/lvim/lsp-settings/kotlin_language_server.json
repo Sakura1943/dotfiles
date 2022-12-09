@@ -1,0 +1,5 @@
+{
+    "kotlin.languageServer.enabled": true,
+    "kotlin.languageServer.debugAttach.enabled": true,
+    "kotlin.indexing.enabled": true
+}

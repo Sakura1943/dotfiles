@@ -1,0 +1,36 @@
+#compdef ctj
+
+autoload -U is-at-least
+
+_ctj() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'-d+[Destination File path]:DEST:_files' \
+'--destination=[Destination File path]:DEST:_files' \
+'-v[Print the processed JSON data]' \
+'--verbose[Print the processed JSON data]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
+':source -- Source File path:_files' \
+&& ret=0
+}
+
+(( $+functions[_ctj_commands] )) ||
+_ctj_commands() {
+    local commands; commands=()
+    _describe -t commands 'ctj commands' commands "$@"
+}
+
+_ctj "$@"
