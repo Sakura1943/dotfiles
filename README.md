@@ -2,10 +2,10 @@
 ----
 
 # Personal configuration
-- config/*
+##  config/*
     $HOME/.config/*
 
-- usr/*
+##  usr/*
     /usr/*
 
 ----
