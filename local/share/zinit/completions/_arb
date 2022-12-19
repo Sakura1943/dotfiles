@@ -1,0 +1,163 @@
+#compdef arb
+
+autoload -U is-at-least
+
+_arb() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'-c+[Configuration file path]:CONFIG_FILE: ' \
+'--config-file=[Configuration file path]:CONFIG_FILE: ' \
+'-s[Show all packages]' \
+'--show-all[Show all packages]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
+":: :_arb_commands" \
+"*::: :->arb" \
+&& ret=0
+    case $state in
+    (arb)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:arb-command-$line[1]:"
+        case $line[1] in
+            (aur)
+_arguments "${_arguments_options[@]}" \
+'-a[Add aur package to repository]' \
+'--add[Add aur package to repository]' \
+'-r[Remove package from repository]' \
+'--remove[Remove package from repository]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::package_name -- Aur package name:' \
+&& ret=0
+;;
+(official)
+_arguments "${_arguments_options[@]}" \
+'-a[Add official package to repository]' \
+'--add[Add official package to repository]' \
+'-r[Remove package from repository]' \
+'--remove[Remove package from repository]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::package_name -- Official package name:' \
+&& ret=0
+;;
+(custom)
+_arguments "${_arguments_options[@]}" \
+'*--package-path=[Custom package path]:PACKAGE_PATH:_files' \
+'*--package-name=[Custom package name of the package to deleted]:PACKAGE_NAME: ' \
+'*--package-url=[Custom package url]:PACKAGE_URL: ' \
+'-a[Add custom package to repository]' \
+'--add[Add custom package to repository]' \
+'-r[Remove custom package from repository]' \
+'--remove[Remove custom package from repository]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+":: :_arb__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:arb-help-command-$line[1]:"
+        case $line[1] in
+            (aur)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(official)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(custom)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_arb_commands] )) ||
+_arb_commands() {
+    local commands; commands=(
+'aur:Aur package operations' \
+'official:Official package operations' \
+'custom:Custom package operations' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'arb commands' commands "$@"
+}
+(( $+functions[_arb__aur_commands] )) ||
+_arb__aur_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb aur commands' commands "$@"
+}
+(( $+functions[_arb__help__aur_commands] )) ||
+_arb__help__aur_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb help aur commands' commands "$@"
+}
+(( $+functions[_arb__custom_commands] )) ||
+_arb__custom_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb custom commands' commands "$@"
+}
+(( $+functions[_arb__help__custom_commands] )) ||
+_arb__help__custom_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb help custom commands' commands "$@"
+}
+(( $+functions[_arb__help_commands] )) ||
+_arb__help_commands() {
+    local commands; commands=(
+'aur:Aur package operations' \
+'official:Official package operations' \
+'custom:Custom package operations' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'arb help commands' commands "$@"
+}
+(( $+functions[_arb__help__help_commands] )) ||
+_arb__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb help help commands' commands "$@"
+}
+(( $+functions[_arb__help__official_commands] )) ||
+_arb__help__official_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb help official commands' commands "$@"
+}
+(( $+functions[_arb__official_commands] )) ||
+_arb__official_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb official commands' commands "$@"
+}
+
+_arb "$@"
