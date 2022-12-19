@@ -22,7 +22,7 @@ weather_icons = {
 # to get your own location_id, go to https://weather.com & search your location.
 # once you choose your location, you can see the location_id in the URL(64 chars long hex string)
 # like this: https://weather.com/en-IN/weather/today/l/c3e96d6cc4965fc54f88296b54449571c4107c73b9638c16aafc83575b4ddf2e
-location_id = "a319796a4173829988d68c4e3a5f90c1b6832667ea7aaa201757a1c887ec667a"  
+location_id = "9b8d3c6bd66747b9c3b9d4cc5f6e1097ad129def4661308d287370f544171dc3"  
 # TODO
 # location_id = "8139363e05edb302e2d8be35101e400084eadcecdfce5507e77d832ac0fa57ae"
 
