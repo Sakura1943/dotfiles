@@ -1,0 +1,9 @@
+[package]
+name = "brightness_change"
+version = "0.1.0"
+authors = ["sakunia <sakunia@foxmail.com>"]
+dependencies = "Change Brightness"
+edition = "2021"
+
+[dependencies]
+brightness = "0.5.0"

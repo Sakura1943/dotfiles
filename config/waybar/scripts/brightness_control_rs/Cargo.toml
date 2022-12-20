@@ -1,0 +1,14 @@
+[package]
+name = "brightness_control"
+version = "0.1.0"
+edition = "2021"
+authors = ["sakunia <sakunia@foxmail.com>"]
+description = "Brightness controller"
+
+
+[dependencies]
+brightness_change = { path = "./brightness_change" }
+gtk = { version = "^0.4.6", package = "gtk4" }
+relm4 = "0.4.4"
+relm4-components = "0.4.4"
+relm4-macros = "0.4.4"

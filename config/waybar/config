@@ -53,10 +53,10 @@
  "max-length": 10,
  },
  "backlight": {
- "device": "DP-1",
+ "device": "eDP-1",
  "format": "{icon} {percent}%",
  "format-icons": ["", "", "", "", "", "", "", "", ""],
- "on-click": "",
+ "on-click": "brightness_control"
  },
  "network": {
  // "interface": "wlp2*", // (Optional) To force the use of this interface
