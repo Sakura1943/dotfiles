@@ -1,6 +1,6 @@
 use brightness_change::BrightnessChange;
-use gtk::traits::{BoxExt, GtkWindowExt, RangeExt};
-use gtk::Inhibit;
+use gtk::traits::{BoxExt, GtkWindowExt, RangeExt, WidgetExt};
+use gtk::{Inhibit, Align};
 use relm4::{send, AppUpdate, Model, RelmApp, WidgetPlus, Widgets};
 
 #[allow(dead_code)]
@@ -32,6 +32,7 @@ impl Widgets<AppModel, ()> for AppWidgets {
             .build();
 
         vbox.set_margin_all(10);
+        vbox.set_valign(Align::Center);
 
         let scale = gtk::Scale::with_range(gtk::Orientation::Horizontal, 0.0, 100.0, 1.0);
         let value = BrightnessChange::get_value().unwrap() as f64;
