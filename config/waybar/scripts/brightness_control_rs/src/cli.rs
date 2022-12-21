@@ -9,9 +9,9 @@ pub struct Cli {
 
 #[derive(Subcommand, Clone)]
 pub enum SubCommands {
-    #[command(about = "Running with Graphical user interface")]
+    #[command(about = "Running on Graphical user interface")]
     Gui(Gui),
-    #[command(about = "Running with command-line interface")]
+    #[command(about = "Running on command-line interface")]
     Cmd(Cmd),
 }
 
