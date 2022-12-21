@@ -56,7 +56,7 @@
  "device": "eDP-1",
  "format": "{icon} {percent}%",
  "format-icons": ["", "", "", "", "", "", "", "", ""],
- "on-click": "brightness_control"
+ "on-click": "brightness_control gui"
  },
  "network": {
  // "interface": "wlp2*", // (Optional) To force the use of this interface
