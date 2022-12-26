@@ -52,8 +52,8 @@ mod tests {
     use super::*;
     use std::{thread::sleep, time::Duration};
 
-    #[tokio::test]
-    async fn it_works() {
+    #[test]
+    fn it_works() {
         assert!(BrightnessChange::with_value(50).is_ok());
         sleep(Duration::from_secs(2));
         assert!(BrightnessChange::up_with_value(10).is_ok());
