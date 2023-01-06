@@ -1,0 +1,10 @@
+/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/libzvariant_derive-994f31b0db790fad.so: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/dict.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/type.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/utils.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/value.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/../README.md
+
+/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/zvariant_derive-994f31b0db790fad.d: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/dict.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/type.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/utils.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/value.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/../README.md
+
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/lib.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/dict.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/type.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/utils.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/value.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zvariant_derive-3.9.0/src/../README.md:

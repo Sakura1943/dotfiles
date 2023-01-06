@@ -1,0 +1,10 @@
+/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/libzbus_macros-a668614f0c053458.so: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/error.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/iface.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/proxy.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/utils.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/../README.md
+
+/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/zbus_macros-a668614f0c053458.d: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/error.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/iface.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/proxy.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/utils.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/../README.md
+
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/lib.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/error.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/iface.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/proxy.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/utils.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/zbus_macros-3.6.2/src/../README.md:

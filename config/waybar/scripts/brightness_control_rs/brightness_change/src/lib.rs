@@ -22,6 +22,7 @@ impl BrightnessChange {
             if new_value > 100 {
                 new_value = 100
             }
+            let value = device.get()?;
             device.set(new_value)?;
             println!("Device: {name} is {value}");
             Ok(())
@@ -33,6 +34,7 @@ impl BrightnessChange {
             let name = device.device_name()?;
             let old_value = device.get()?;
             let new_value = old_value - value;
+            let value = device.get()?;
             device.set(new_value)?;
             println!("Device: {name} is {value}");
             Ok(())

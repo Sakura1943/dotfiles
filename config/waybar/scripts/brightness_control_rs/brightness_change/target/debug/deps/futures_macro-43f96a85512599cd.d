@@ -1,0 +1,9 @@
+/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/libfutures_macro-43f96a85512599cd.so: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/executor.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/join.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/select.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/stream_select.rs
+
+/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/futures_macro-43f96a85512599cd.d: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/executor.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/join.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/select.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/stream_select.rs
+
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/lib.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/executor.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/join.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/select.rs:
+/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/futures-macro-0.3.25/src/stream_select.rs:
