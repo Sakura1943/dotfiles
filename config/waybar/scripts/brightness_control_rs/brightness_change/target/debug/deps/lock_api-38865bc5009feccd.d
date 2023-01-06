@@ -1,8 +1,0 @@
-/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/lock_api-38865bc5009feccd.rmeta: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/mutex.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/remutex.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/rwlock.rs
-
-/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/lock_api-38865bc5009feccd.d: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/lib.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/mutex.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/remutex.rs /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/rwlock.rs
-
-/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/lib.rs:
-/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/mutex.rs:
-/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/remutex.rs:
-/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/lock_api-0.4.9/src/rwlock.rs:

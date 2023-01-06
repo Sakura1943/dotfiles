@@ -1,5 +1,0 @@
-/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/async_executor-f18124d965e29b5e.rmeta: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/async-executor-1.5.0/src/lib.rs
-
-/home/sakunia/Data/Projects/rust/lc/light_change/target/debug/deps/async_executor-f18124d965e29b5e.d: /home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/async-executor-1.5.0/src/lib.rs
-
-/home/sakunia/.cargo/registry/src/mirrors.bfsu.edu.cn-4c6e9dcaa6bd74e7/async-executor-1.5.0/src/lib.rs:
