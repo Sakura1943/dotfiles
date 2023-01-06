@@ -1,0 +1,49 @@
+#compdef rsuname
+
+autoload -U is-at-least
+
+_rsuname() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'-a[print all information, in the following order, except omit -p and -i if unknown:]' \
+'--all[print all information, in the following order, except omit -p and -i if unknown:]' \
+'-s[print the kernel name]' \
+'--kernel-name[print the kernel name]' \
+'-n[print the network node hostname]' \
+'--nodename[print the network node hostname]' \
+'-r[print the kernel release]' \
+'--kernel-release[print the kernel release]' \
+'-v[print the kernel version]' \
+'--kernel-version[print the kernel version]' \
+'-m[print the machine hardware name]' \
+'--machine[print the machine hardware name]' \
+'-p[print the processor type (non-portable)]' \
+'--processor[print the processor type (non-portable)]' \
+'-i[print the hardware platform (non-portable)]' \
+'--hardware-platform[print the hardware platform (non-portable)]' \
+'-o[print the operating system]' \
+'--operating-system[print the operating system]' \
+'-h[Print help information (use `--help` for more detail)]' \
+'--help[Print help information (use `--help` for more detail)]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
+&& ret=0
+}
+
+(( $+functions[_rsuname_commands] )) ||
+_rsuname_commands() {
+    local commands; commands=()
+    _describe -t commands 'rsuname commands' commands "$@"
+}
+
+_rsuname "$@"
