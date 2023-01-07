@@ -54,17 +54,25 @@ _arguments "${_arguments_options[@]}" \
 '*::package_name -- Official package name:' \
 && ret=0
 ;;
-(custom)
+(custom-add-with-paths)
 _arguments "${_arguments_options[@]}" \
-'*--package-path=[Custom package path]:PACKAGE_PATH:_files' \
-'*--package-name=[Custom package name of the package to deleted]:PACKAGE_NAME: ' \
-'*--package-url=[Custom package url]:PACKAGE_URL: ' \
-'-a[Add custom package to repository]' \
-'--add[Add custom package to repository]' \
-'-r[Remove custom package from repository]' \
-'--remove[Remove custom package from repository]' \
 '-h[Print help information]' \
 '--help[Print help information]' \
+'*::package_paths -- Package paths:_files' \
+&& ret=0
+;;
+(custom-add-with-urls)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::package_urls -- Package urls:' \
+&& ret=0
+;;
+(custom-remove)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::package_names -- Package names:' \
 && ret=0
 ;;
 (help)
@@ -87,7 +95,15 @@ _arguments "${_arguments_options[@]}" \
 _arguments "${_arguments_options[@]}" \
 && ret=0
 ;;
-(custom)
+(custom-add-with-paths)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(custom-add-with-urls)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(custom-remove)
 _arguments "${_arguments_options[@]}" \
 && ret=0
 ;;
@@ -109,7 +125,9 @@ _arb_commands() {
     local commands; commands=(
 'aur:Aur package operations' \
 'official:Official package operations' \
-'custom:Custom package operations' \
+'custom-add-with-paths:Add custom packages to repository with package paths' \
+'custom-add-with-urls:Add custom packages to repository with package urls' \
+'custom-remove:Remove custom packages to repository' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'arb commands' commands "$@"
@@ -124,22 +142,44 @@ _arb__help__aur_commands() {
     local commands; commands=()
     _describe -t commands 'arb help aur commands' commands "$@"
 }
-(( $+functions[_arb__custom_commands] )) ||
-_arb__custom_commands() {
+(( $+functions[_arb__custom-add-with-paths_commands] )) ||
+_arb__custom-add-with-paths_commands() {
     local commands; commands=()
-    _describe -t commands 'arb custom commands' commands "$@"
+    _describe -t commands 'arb custom-add-with-paths commands' commands "$@"
 }
-(( $+functions[_arb__help__custom_commands] )) ||
-_arb__help__custom_commands() {
+(( $+functions[_arb__help__custom-add-with-paths_commands] )) ||
+_arb__help__custom-add-with-paths_commands() {
     local commands; commands=()
-    _describe -t commands 'arb help custom commands' commands "$@"
+    _describe -t commands 'arb help custom-add-with-paths commands' commands "$@"
+}
+(( $+functions[_arb__custom-add-with-urls_commands] )) ||
+_arb__custom-add-with-urls_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb custom-add-with-urls commands' commands "$@"
+}
+(( $+functions[_arb__help__custom-add-with-urls_commands] )) ||
+_arb__help__custom-add-with-urls_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb help custom-add-with-urls commands' commands "$@"
+}
+(( $+functions[_arb__custom-remove_commands] )) ||
+_arb__custom-remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb custom-remove commands' commands "$@"
+}
+(( $+functions[_arb__help__custom-remove_commands] )) ||
+_arb__help__custom-remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'arb help custom-remove commands' commands "$@"
 }
 (( $+functions[_arb__help_commands] )) ||
 _arb__help_commands() {
     local commands; commands=(
 'aur:Aur package operations' \
 'official:Official package operations' \
-'custom:Custom package operations' \
+'custom-add-with-paths:Add custom packages to repository with package paths' \
+'custom-add-with-urls:Add custom packages to repository with package urls' \
+'custom-remove:Remove custom packages to repository' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'arb help commands' commands "$@"

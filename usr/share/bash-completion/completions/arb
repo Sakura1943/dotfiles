@@ -15,8 +15,14 @@ _arb() {
             arb,aur)
                 cmd="arb__aur"
                 ;;
-            arb,custom)
-                cmd="arb__custom"
+            arb,custom-add-with-paths)
+                cmd="arb__custom__add__with__paths"
+                ;;
+            arb,custom-add-with-urls)
+                cmd="arb__custom__add__with__urls"
+                ;;
+            arb,custom-remove)
+                cmd="arb__custom__remove"
                 ;;
             arb,help)
                 cmd="arb__help"
@@ -27,8 +33,14 @@ _arb() {
             arb__help,aur)
                 cmd="arb__help__aur"
                 ;;
-            arb__help,custom)
-                cmd="arb__help__custom"
+            arb__help,custom-add-with-paths)
+                cmd="arb__help__custom__add__with__paths"
+                ;;
+            arb__help,custom-add-with-urls)
+                cmd="arb__help__custom__add__with__urls"
+                ;;
+            arb__help,custom-remove)
+                cmd="arb__help__custom__remove"
                 ;;
             arb__help,help)
                 cmd="arb__help__help"
@@ -43,7 +55,7 @@ _arb() {
 
     case "${cmd}" in
         arb)
-            opts="-c -s -h -V --config-file --show-all --help --version aur official custom help"
+            opts="-c -s -h -V --config-file --show-all --help --version aur official custom-add-with-paths custom-add-with-urls custom-remove help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -78,25 +90,41 @@ _arb() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        arb__custom)
-            opts="-a -r -h --package-path --package-name --package-url --add --remove --help"
+        arb__custom__add__with__paths)
+            opts="-h --help [PACKAGE_PATHS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
-                --package-path)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
+                *)
+                    COMPREPLY=()
                     ;;
-                --package-name)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        arb__custom__add__with__urls)
+            opts="-h --help [PACKAGE_URLS]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
                     ;;
-                --package-url)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        arb__custom__remove)
+            opts="-h --help [PACKAGE_NAMES]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
                 *)
                     COMPREPLY=()
                     ;;
@@ -105,7 +133,7 @@ _arb() {
             return 0
             ;;
         arb__help)
-            opts="aur official custom help"
+            opts="aur official custom-add-with-paths custom-add-with-urls custom-remove help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -132,7 +160,35 @@ _arb() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        arb__help__custom)
+        arb__help__custom__add__with__paths)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        arb__help__custom__add__with__urls)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        arb__help__custom__remove)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
