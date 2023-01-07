@@ -20,6 +20,6 @@ return {
         top = 0,
         bottom = 0,
     },
-    default_prog = {'/usr/bin/nu'},
+    default_prog = {'/usr/bin/zsh'},
     exit_behavior = "Close",
 }

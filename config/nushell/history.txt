@@ -557,3 +557,39 @@ cd dotfiles/
 ls
 cd config/
 ls
+cp -r ~/.config/nushell/ ./
+ls
+cd ../
+proxy_on 7890
+git add .
+git commit -m "update"
+git push
+ls
+arb help official 
+arb official pacman
+arb official --help
+arb official -a pacman
+sudo pacman -Syl sakunia
+arb official -a linux-zen linux-zen-docs linux-zen-headers
+proxy_off
+arb official -a linux-zen linux-zen-docs linux-zen-headers
+sudo pacman -Syl sakunia
+ls
+mv
+mv --help
+ll
+ls
+sudo chsh -s /usr/bin/bash
+sudo chsh -s /bin/bash
+ls
+vim ~/.config/wezterm/wezterm.lua
+sudo chsh -s /usr/bin/zsh
+ls
+vim ~/.config/lvim/config.lua
+ls
+cd
+ls
+cd Data/Projects/github/dotfiles/
+ls
+cd config/
+ls
