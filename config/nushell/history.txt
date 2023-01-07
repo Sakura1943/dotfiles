@@ -1,0 +1,559 @@
+ls
+dir
+ls
+htop
+sudo
+sudo pacman -Syu --needed
+ls
+sudo pacman -Syu --neededl
+ls
+ls | where Column
+ls
+ls | nu --stdin -c 'lines'
+ls | nu --stdin -c 'lines' | wrap
+ls | nu --stdin -c 'lines | wrap'
+ls | nu --stdin -c 'lines | wrap '
+echo "hello" | save a.txt
+ls
+cat a.txt
+rm -rf a.txt
+ls
+echo "sasa" | save a
+source a
+source "a"
+ls
+rm -rf a
+echo "sasa" | save a.nu
+source "a.nu"
+rm -rf a.nu
+vim output.nu
+source "output.nu"
+vim output.nu
+source "output.nu"
+abc
+config nu
+ls
+rm -rf output.nu
+ls
+let x = $x + 1
+cd ./Data/Projects/
+ls
+mkdir nushell
+cd nushell/
+ls
+mkdir demi
+rmv demi/ demo
+mv demi/ demo
+cd demo/
+vim main.nu
+nu main.nu
+vim main.nu
+nu main.nu
+vim main.nu
+nu main.nu
+vim main.nu
+code .
+code .\
+ls
+cd Data/Projects/nushell/
+cd demo/
+nvim main.nu
+vim main.nu
+nu main.nu
+ls
+cd Data/Projects/rust/
+ls
+cd gtk-demo/
+code .
+cd
+rustup component add rust-analyzer-preview
+ls
+ls ~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer
+ls
+ll
+ls
+ls -l
+ls -lh
+ls -l
+ls
+cat README.md
+ls
+help
+help --find cat
+ls
+bat tsconfig.json
+ls
+ll
+ls
+ls -l
+alias ll='ls -a'
+ls
+alias 
+ls
+dir
+ls
+list
+ls
+shindanmaker 
+shindanmaker -h
+shindanmaker sakunia
+clear
+ls
+sl
+slls
+ls
+cd csv/
+ls
+open main.csv | to json out> main.json 
+ls
+cd
+ls
+cd Data/Projects/
+ls
+ll
+ls
+mkdir NuShell
+cd NuShell/
+ll
+ls
+all
+all .
+ls
+mkdir demo
+cd demo
+vim ./main.nu
+lvim ./main.nu
+ls
+code ./
+ls
+ll
+ps 
+ps | where cpu > 5
+ps | where mem > 200
+date
+date now
+help
+ll
+date now | date to-table 
+clear
+date now | date to-table 
+echo $PS1
+echo $PS
+echo $HOST
+echo $USER
+echo USER
+clear
+sys
+clear
+sys
+sys | get mem
+type sys 
+describe sys 
+help path
+path join
+path join a
+path basename
+path basename ./qingyunke/
+path basename ./qingyunke/cmake_install.cmake
+ll
+ls
+help path
+./ qingyunke/ basename
+ qingyunke/ basename
+ ./qingyunke/ basename
+path  ./qingyunke/ basename
+path  ./qingyunke/
+path basename -h
+'/home/joe.aa' | path basename
+cd
+echo "def abc [] { 1 + 2 }" | save output.nu
+ls
+nui output.nu
+nu output.nu
+rm -rf output.nu
+ls
+cd Data/Projects/NuShell/
+ll
+ls
+cd demo/
+ls
+lvim ./main.nu
+nu main.nu
+vim ./main.nu
+nu main.nu
+vim ./main.nu
+lvim ./main.nu
+nu main.nu
+vim ./main.nu
+lvim ./main.nu
+ls
+ls | each
+ls | each -n
+ls | each -n { |it| $"Number ($it.index) is size ($it.item.size)" }
+ls
+ls | each -n { |it| $"Number ($it.index) is size ($it.item.size)" }
+ls | each -n { |it| $"File ($it) Number ($it.index) is size ($it.item.size)" }
+ls | each -n { |it| $"File ($it.item.name) Number ($it.index) is size ($it.item.size)" }
+[one, two, three, four, five, six] | reduce {|curr, max|<\n>}
+vim ./main.nu
+lvim ./main.nu
+nu main.nu
+ls
+ls *.nu
+ls
+ls /
+echo "aa" | grep a
+echo "aa" | grep aa
+ls
+vim ~/.config/nushell/env.nu
+vim ~/.config/nushell/config.nu
+vim ~/.config/nushell/history.txt
+cd ~/.config/nushell/
+ls
+vim env.nu
+cd ~/.config/nushell/
+vim env.nu
+cd ~/.config/nushell/
+vim env.nu
+cd ~/.config/nushell/
+lvim env.nu
+lvim config.nu
+lvim env.nu
+crm
+lvim env.nu
+cd ~/.config/nushell/
+lvim env.nu
+vim
+vim /home/sakunia/.config/nushell/config.nu
+cd ~/.config/nushell/
+ll
+ls
+all
+ls
+config nu 
+config reset 
+cd ~/.config/nushell/
+vim /home/sakunia/.config/nushell/env.nu
+vim
+vim ./qingyunke/build.ninja
+cd
+ls
+cd ~/.config/nushell/
+vim env.nu
+cd ~/.config/nushell/
+vim env.nu
+proxy_on 7890
+curl https://www.google.com
+echo $USER
+echo $"$http_proxy"
+echo $"($http_proxy)"
+echo $PATH
+echo $"$PATH"
+echo $"($PATH)"
+$"($PATH)"
+$PATH
+$(PATH)
+$($PATH)
+clear
+print $USER
+print $"($USER)"
+print $"(1 + 1)"
+let USER = sakunia; print $"(1 + 1)"
+let USER = "sakunia"; print $"(1 + 1)"
+let USER = "sakunia"; print $"($USER)"
+cd ~/.config/nushell/
+vim env.nu
+proxy_on 7890
+cd ~/.config/nushell/
+vim env.nu
+proxy_on 7890
+curl https://www.google.com
+cd ~/.config/nushell/
+open env.nu
+def proxy_on [port: number] {<\n>    let-env all_proxy = $"http://127.0.0.1:($port)"<\n>    let-env ALL_PROXY = $"http://127.0.0.1:($port)"<\n>    let-env http_proxy = $"http://127.0.0.1:($port)"<\n>    let-env https_proxy = $"http://127.0.0.1:($port)"<\n>    git config --global http.proxy $"http://127.0.0.1:($port)"<\n>    git config --global https.proxy $"http://127.0.0.1:($port)"<\n>}
+proxy_on 7890
+echo $"($http_proxy)"
+let-env all_proxy = "1"
+echo $"($all_proxy)"
+vim env.nu
+proxy_on 7890
+echo $"($all_proxy)"
+let-env all_proxy = { "1" }
+echo $"($all_proxy)"
+echo $"($PATH)"
+vim env.nu
+cd ~/.config/nushell/
+vim env.nu
+proxy_on 7890
+echo $"($all_proxy)"
+let app = "a"
+echo $"($app)"
+ls
+cd ~/.config/nushell/
+vim env.nu
+curl https://www.google.com
+proxy_on 7890
+curl https://www.google.com
+env
+env all_proxy
+env --help 
+env | where name == PATH
+env | where name == all_proxy
+proxy_on 7890
+env | where name == all_proxy
+env | where name == APP_PROXY
+env | where name == PROXY
+let-env all_proxy = { "1" }
+env | where name == all_proxy
+let-env all_proxy = "1" 
+env | where name == all_proxy
+cd
+cd ~/.config/nushell/
+cat env.nu
+let-env all_proxy = "http://127.0.0.1:7890"
+let-env ALL_PROXY = "http://127.0.0.1:7890"
+env | where name == all_proxy
+let-env http_proxy = "http://127.0.0.1:7890"
+let-env https_proxy = "http://127.0.0.1:7890"
+curl https://www.google.com
+env | where name == all_proxy
+let port = 7000
+let-env https_proxy = $"http://127.0.0.1:($port)"
+env | where name == https_proxy
+cat env.nu
+env | where name == https_proxy
+tail -10 env.nu
+tail -15 env.nu
+def proxy_on [port: number] {<\n>    let-env all_proxy = $"http://127.0.0.1:($port)"<\n>    let-env ALL_PROXY = $"http://127.0.0.1:($port)"<\n>    let-env http_proxy = $"http://127.0.0.1:($port)"<\n>    let-env https_proxy = $"http://127.0.0.1:($port)"<\n>    git config --global http.proxy $"http://127.0.0.1:($port)"<\n>    git config --global https.proxy $"http://127.0.0.1:($port)"<\n>}
+proxy_on 70
+env | where name == https_proxy
+vim env.nu
+let port = [1, 2, 3]
+echo $"($port)"
+echo $"($port[0])"
+echo $"($port.)"
+echo $"($port)"
+echo $"($port:)"
+echo $"($port)"
+echo $"($port)" | get 0
+echo $"($port)" 
+$port
+$port | get 0
+$port | get 1
+vim env.nu
+proxy_on 70
+$env.all_proxy
+proxy_on 7800
+$env.all_proxy
+vim env.nu
+proxy_on 7800
+$env.all_proxy
+proxy_on 7890
+cd ~/.config/nushell/
+vim env.nu
+hide all_proxy
+hide all_proxy ALL_PROXY
+proxy_on 7890
+hide all_proxy ALL_PROXY
+proxy_on 7890
+hide all_proxy
+vim env.nu
+ls
+cd ~/.config/nushell/
+vim config.nu
+lvim
+ls
+vim 
+vim  ./config.nu
+bash
+zsh
+ls
+$env.PATH
+cd ~/.config/nushell/
+vim ./env.nu
+/usr/bin/vim ./config.nu
+~/.local/bin/lvim ./env.nu
+vim 
+ls
+lvim
+ls
+env | where name == PATH
+cd ~/.config/nushell/
+~/.local/bin/lvim ./env.nu
+vim
+ls
+cd ~/.config/nushell/
+ls
+crm 
+ll
+cd ~/Data/Projects/rust
+ls
+cargo new dmeo
+cd dmeo/
+ls
+^clear 
+vim ./
+cd ~/Data/Projects/github/
+proxy_on 7890
+cd dotfiles/
+l
+ls
+cd config/
+ls
+cp -rf ~/.config/wezterm/ ./
+cp  ~/.config/wezterm/ ./
+cp
+help cp
+clear
+cp -r  ~/.config/wezterm/ ./
+ls
+cd ../local/
+ls
+cd share/
+ls
+cd ../../
+ll
+cd config/
+ls
+cd lvim/
+cp -r ~/.config/lvim ./
+cd lvim/
+ls
+open config.lua
+open config.lua | from lua
+open config.lua
+open config.lua | lines
+open config.lua | lines | str trim
+open config.lua | lines
+open config.lua | lines | get
+open config.lua | lines | get a
+open config.lua | lines | get 10
+open config.lua | lines | grep "nu"
+open config.lua | grep "nu"
+../../
+../
+git add .
+git commit
+git commit -m "update"
+git push
+sudo pacman -Sy nushell-completion
+sudo pacman -Ss nushell-completion
+sudo pacman -Ss nushell-comple
+paru -Ss nushell-comple
+sudo pacman -Ss nushell
+paru -Ss nushell
+ls
+cd ~/.config/nushell/
+ls
+vim config.nu
+ls
+exitr
+vim config.nu
+lvim config.nu
+cd
+cd ~/.config/nushell/
+vim
+ls
+~/.local/bin/lvim ./config.nu
+open ~/Data/Projects/rust/arb/
+open ~/Data/Projects/rust/arb/completions/arb.nu
+ls
+bim
+vim
+ll
+ls
+cd Data/Projects/rust/arb
+ls
+cd completions/
+ls
+open arb.nu
+source ./arb.nu
+ls
+cd ~/.config/nushell/
+ls
+mkdir completions
+ls
+cd completions/
+ls
+cp -r ~/Data/Projects/rust/arb/completions/arb.nu ./
+cp -r ~/Data/Projects/rust/ctj/components/ctj.nu ./
+cp -r ~/Data/Projects/rust/rsuname/completions/rsuname.nu ./
+cp -r ~/Data/Projects/rust/brightness_control/completions/brightness_control.nu ./
+ls
+cd ../
+vim env.nu
+ls
+cd ~/.config/nushell/
+ls
+vim env.nu
+ls
+cd ~/.config/nushell/
+vim env.nu
+cd ~/.config/nushell/
+source ~/.config/nushell/completions/*.nu
+source ~/.config/nushell/completions/arb.nu
+ls
+vim env.nu
+cd ~/.config/nushell/
+source ~/.config/nushell/completions/arb.nu
+vim
+ll
+ls
+vim env.nu
+ls ~/.config/nushell/completions/
+ls ~/.config/nushell/completions | each { |it| $"{it.item.name}" }
+ls ~/.config/nushell/completions | each { |it| $"($it.item.name)" }
+ls ~/.config/nushell/completions | each { |it| $"($it.)" }
+ls ~/.config/nushell/completions | each { |it| $"($it)" }
+ls ~/.config/nushell/completions | each { |it| $"($it.name)" }
+vim env.nu
+cd ~/.config/nushell/
+vim env.nu
+ls ~/.config/nushell/completions
+ls ~/.config/nushell/completions | each { |it| $"($it.name)" }
+ls ~/.config/nushell/completions | each { |it| source $"($it.name)" }
+ls ~/.config/nushell/completions | each { |it| echo $"($it.name)" }
+ls ~/.config/nushell/completions | each { |it| $"($it.name) | source" }
+ls ~/.config/nushell/completions | each { |it| $"($it.name)" | source }
+ls ~/.config/nushell/completions | each { |it| source ($"($it.name)") }
+cd ~/.config/nushell/
+ls
+cd completions/
+ls
+ls ~/.config/nushell/completions | each { |it| source ($"($it.name)") }
+ls ~/.config/nushell/completions | each { |it| $"($it.name)" }
+let path = "home/sakunia/.config/nushell/completions/arb.nu"
+let path = "/home/sakunia/.config/nushell/completions/arb.nu"
+source $path
+source $"($path)"
+echo $"($port)" 
+echo $"($path)" 
+source "home/sakunia/.config/nushell/completions/arb.nu"
+source "/home/sakunia/.config/nushell/completions/arb.nu"
+ll
+ls
+ls ~/.config/nushell/completions | each { |it| $it.name }
+ls ~/.config/nushell/completions | each { |it| source $it.name }
+vim env.nu
+cd ..
+ls
+vim env.nu
+ls
+cd ~/.config/nushell/
+ls
+vim ./env.nu
+vim
+cd ~/.config/nushell/
+ls
+vim ./env.nu
+ls
+cd ~/.config/nushell/
+vim ./env.nu
+cd ~/.config/nushell/
+vim ./env.nu
+ll
+cd ~/Data/Projects/github/
+cd dotfiles/
+ls
+cd config/
+ls
