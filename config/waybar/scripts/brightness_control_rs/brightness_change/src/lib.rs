@@ -1,5 +1,5 @@
 use brightness::blocking::Brightness as _;
-use std::sync::Arc;
+use std::{sync::Arc, fs::read_to_string};
 
 pub struct BrightnessChange;
 
@@ -33,7 +33,12 @@ impl BrightnessChange {
             let device = Arc::new(device.unwrap());
             let name = device.device_name()?;
             let old_value = device.get()?;
-            let new_value = old_value - value;
+            let mut new_value = old_value - value;
+            let binding = read_to_string(format!("/sys/class/backlight/{name}/max_brightness")).expect("Failed to get max_brightness");
+            let max_brightness = binding.trim().parse::<u32>().expect("Failed to convert max_brightness to u32");
+            if new_value > max_brightness {
+                new_value = 0
+            }
             let value = device.get()?;
             device.set(new_value)?;
             println!("Device: {name} is {value}");
