@@ -1,6 +1,6 @@
 [package]
 name = "brightness_change"
-version = "0.1.2"
+version = "0.1.4"
 authors = ["sakunia <sakunia@foxmail.com>"]
 dependencies = "Change Brightness"
 edition = "2021"
