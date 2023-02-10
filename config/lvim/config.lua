@@ -101,7 +101,7 @@ formatters.setup({
     { command = "shfmt", filetypes = { "sh" } },
     { command = "stylua", extra_args = { "--indent-type", "Spaces" }, filetypes = { "lua" } },
     { command = "gofmt", filetypes = { "go" }, },
-    { command = "raco_fmt", filetypes = { "racket" }, args = { "fmt" }, },
+    { command = "raco_fmt" },
     {
         command = "prettierd",
         filetypes = { "vue", "html", "json" },
@@ -129,6 +129,10 @@ formatters.setup({
         filetypes = { "c", "cpp" },
     },
     ]]
+    {
+        command = "black",
+        filetype = "python"
+    }
 })
 
 -- Additional Plugins
@@ -325,6 +329,3 @@ lvim.transparent_window = true
 if vim.fn.has("multi_bytes") then
     vim.opt.listchars = "tab:▸ ,extends:❯,precedes:❮,nbsp:±,trail:▫"
 end
-
--- Lsp Custom Configuration
--- require("racket_lanserver").setup()
