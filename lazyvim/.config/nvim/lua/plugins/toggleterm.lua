@@ -25,7 +25,7 @@ return {
     config = function()
         require("toggleterm").setup {
             active = true,
-            shell = "fish",
+            shell = "zsh",
             start_in_insert = false,
             insert_mappings = true,
             terminal_mappings = true,
