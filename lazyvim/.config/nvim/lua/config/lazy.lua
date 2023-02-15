@@ -8,6 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+vim.o.background = "dark"
 
 require("lazy").setup({
     spec = {
@@ -23,7 +24,7 @@ require("lazy").setup({
         }, {
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
-            opts = {colorscheme = "gruvbox"}
+            opts = {colorscheme = "gruvbox", auto_save = false}
         }, -- Configure LazyVim to load gruvbox
         -- import any extras modules here
         -- { import = "lazyvim.plugins.extras.lang.typescript" },

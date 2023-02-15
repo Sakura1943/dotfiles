@@ -12,7 +12,7 @@ return {
         }
     },
     opts = {
-        -- autoformat = true,
+        autoformat = false,
         -- format = {formatting_options = nil, timeout_ms = nil},
         servers = {
             racket_langserver = {},
