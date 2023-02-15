@@ -13,7 +13,7 @@ return {
     },
     opts = {
         -- autoformat = true,
-        format = {formatting_options = nil, timeout_ms = nil},
+        -- format = {formatting_options = nil, timeout_ms = nil},
         servers = {
             racket_langserver = {},
             lua_ls = {
