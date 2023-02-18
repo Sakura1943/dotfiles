@@ -37,7 +37,7 @@ return {
                                 vim.fn.expand("$$HOME/.luarocks/share/lua/5.4"),
                                 "/usr/lib/luarocks/rocks-5.4",
                                 "/usr/share/lua/5.4",
-                                "/usr/lib/luarocks/rocks-5.1"
+                                "/usr/lib/luarocks/rocks-5.1", "/usr/lib/lua"
                             },
                             checkThirdParty = false,
                             maxPreload = 5000,
