@@ -4,3 +4,5 @@
 --
 local opt = vim.opt
 opt.pumblend = 0
+
+vim.g["nvim_markdown_preview_format"] = "markdown"
