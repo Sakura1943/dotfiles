@@ -1,0 +1,25 @@
+[package]
+name = "brightness_control"
+version = "0.1.6"
+edition = "2021"
+authors = ["sakunia <sakunia@foxmail.com>"]
+description = "Brightness controller"
+
+
+[dependencies]
+anyhow = "1.0.68"
+brightness_change = { path = "./brightness_change" }
+clap = { version = "4.1.1", features = ["derive"] }
+gtk = { version = "^0.4.8", package = "gtk4" }
+relm4 = "0.4.4"
+relm4-components = "0.4.4"
+relm4-macros = "0.4.4"
+
+[build-dependencies]
+clap = { version = "4.1.1", features = ["derive"] }
+clap_complete = "4.1.0"
+clap_complete_nushell = "0.1.8"
+
+[profile.release]
+lto = true
+strip = true
