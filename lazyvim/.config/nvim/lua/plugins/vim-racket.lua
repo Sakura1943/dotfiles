@@ -1,1 +1,1 @@
-return {"wlangstroth/vim-racket"}
+return { { "wlangstroth/vim-racket" } }

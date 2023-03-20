@@ -1,3 +1,3 @@
-return {
-  "nkrkv/nvim-treesitter-rescript"
-}
+return { {
+  "nkrkv/nvim-treesitter-rescript",
+} }
