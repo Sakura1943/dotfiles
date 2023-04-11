@@ -15,42 +15,56 @@ return {
       autoformat = false,
       -- format = {formatting_options = nil, timeout_ms = nil},
       servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              runtime = {
-                version = "LuaJIT",
-                special = { reload = "require" },
-              },
-              telemetry = false,
-              diagnostics = {
-                globals = {
-                  "vim",
-                  "nvim",
-                  "packer_plugins",
-                  "reload",
-                },
-              },
-              workspace = {
-                library = {
-                  vim.fn.expand("$VIMRUNTIME"),
-                  vim.fn.expand("$VIMRUNTIME/lua"),
-                  vim.fn.stdpath("config") .. "/lua",
-                  vim.fn.expand("$$HOME/.luarocks/share/lua/5.4"),
-                  "/usr/lib/luarocks/rocks-5.4",
-                  "/usr/share/lua/5.4",
-                  "/usr/lib/luarocks/rocks-5.1",
-                  "/usr/lib/lua",
-                },
-                checkThirdParty = false,
-                maxPreload = 5000,
-                preloadFileSize = 10000,
-              },
-            },
-          },
-        },
+        rust_analyzer = {},
+        pyright = {},
+        emmet_ls = {},
+        gopls = {},
+        html = {},
+        jsonls = {},
+        lua_ls = {},
+        zls = {},
+        tsserver = {},
+        clangd = {},
+        taplo = {}
       },
     },
+    config = function(_, opts)
+      require("lazyvim.util").on_attach(function(client, buffer)
+        client.server_capabilities.semanticTokensProvider = nil
+        require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+      end)
+      -- diagnostics
+      for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
+        name = "DiagnosticSign" .. name
+        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+      end
+      vim.diagnostic.config(opts.diagnostics)
+
+      local servers = opts.servers
+      -- Lsp connection
+      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+      local function setup(server)
+        local server_opts = vim.tbl_deep_extend("force", {
+          capabilities = vim.deepcopy(capabilities),
+        }, servers[server] or {})
+
+        if opts.setup[server] then
+          if opts.setup[server](server, server_opts) then
+            return
+          end
+        elseif opts.setup["*"] then
+          if opts.setup["*"](server, server_opts) then
+            return
+          end
+        end
+        require("lspconfig")[server].setup(server_opts)
+      end
+
+      for server, _ in pairs(servers) do
+        setup(server)
+      end
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -60,6 +74,7 @@ return {
         "clangd",
         "gopls",
         "html-lsp",
+        "pyright",
         "json-lsp",
         "lemminx",
         "lua-language-server",
