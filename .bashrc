@@ -6,11 +6,21 @@ alias ll='ls -lh'
 alias la='ls -A'
 alias lla='ll -A'
 alias grep='grep --color=auto'
-alias vim='lvim'
+alias vim='nvim'
 alias vi='vim'
+alias ssh='TERM=xterm-256color ssh'
 
 #PATH
-export PATH=$PATH:$HOME/.bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/Data/Projects/go/bin:$HOME/.roswell/bin:$HOME/.deno/bin
+export PATH=$PATH:$HOME/.bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/Data/code/go/bin:$HOME/.roswell/bin:$HOME/.deno/bin:/usr/bin/core_perl:$HOME/.local/share/gem/ruby/3.0.0/bin:$HOME/.pub-cache/bin:/usr/lib/dart/bin:/run/user/1000/fnm_multishells/61116_1682314705167/bin
+
+# FNM
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/29113_1682261197986"
+export FNM_VERSION_FILE_STRATEGY="local"
+export FNM_DIR="/home/sakunia/.local/share/fnm"
+export FNM_ARCH="x64"
+export FNM_LOGLEVEL="info"
+eval "$(fnm env --use-on-cd)"
 
 # Rustup
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
@@ -31,7 +41,7 @@ proxy_off() {
 	git config --global --unset https.proxy
 }
 ssh_on() {
-    ssh root@104.244.77.141 -p 333
+    ssh -X root@104.244.77.141 -p 333
 }
 
 # Fig post block. Keep at the bottom of this file.
