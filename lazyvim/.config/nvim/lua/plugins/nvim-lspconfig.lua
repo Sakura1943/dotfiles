@@ -25,7 +25,8 @@ return {
         zls = {},
         tsserver = {},
         clangd = {},
-        taplo = {}
+        taplo = {},
+        cssls = {}
       },
     },
     config = function(_, opts)

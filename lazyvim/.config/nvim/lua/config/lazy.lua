@@ -24,7 +24,7 @@ require("lazy").setup({
         }, {
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
-            opts = {colorscheme = "gruvbox", auto_save = false}
+            opts = {colorscheme = "gruvbox-material", auto_save = false}
         }, -- Configure LazyVim to load gruvbox
         -- import any extras modules here
         -- { import = "lazyvim.plugins.extras.lang.typescript" },
