@@ -21,6 +21,7 @@ return {
         gopls = {},
         html = {},
         jsonls = {},
+        volar = {},
         lua_ls = {},
         zls = {},
         tsserver = {},

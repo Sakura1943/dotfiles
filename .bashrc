@@ -51,3 +51,20 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+alias sudo='doas'
+alias sudoedit='doas nvim'
+
+## Upload file
+upload() {
+  token=`cat $HOME/.clipboard.token`
+  if [[ $? != 0 ]]; then
+    echo "token配置文件'${HOME}/.clipboard.token'不存在"
+    return
+  fi
+  if [ -z $1 ]; then
+    echo "请传入文件路径"
+    return
+  fi
+  cat $1 | curl https://clipboard.sakura1943.top:8800/api/document/upload -F "file=@-" -H "token: ${token}" 
+}
