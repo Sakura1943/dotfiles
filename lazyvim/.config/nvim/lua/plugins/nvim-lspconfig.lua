@@ -27,7 +27,7 @@ return {
         tsserver = {},
         clangd = {},
         taplo = {},
-        cssls = {}
+        cssls = {},
       },
     },
     config = function(_, opts)
@@ -74,13 +74,11 @@ return {
       ensure_installed = {
         -- Language Server
         "clangd",
-        "gopls",
         "html-lsp",
         "pyright",
         "json-lsp",
         "lemminx",
         "lua-language-server",
-        "rescript-lsp",
         "rust-analyzer",
         "texlab",
         "typescript-language-server",

@@ -9,7 +9,7 @@ return {
     "glepnir/easyformat.nvim",
     dependencies = { "williamboman/mason.nvim" },
     cmd = "EasyFormat",
-    keys = { { "<leader>cf", "<cmd>EasyFormat<cr>", desc = "异步格式化" } },
+    keys = { { "<leader>lf", "<cmd>EasyFormat<cr>", desc = "异步格式化" } },
     config = function()
       local config = require("easyformat.config")
 
@@ -29,6 +29,7 @@ return {
       config.vue = prettier
 
       config.use_default({
+        "go",
         "rust",
         "c",
         "cpp",
