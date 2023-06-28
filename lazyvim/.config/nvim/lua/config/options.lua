@@ -6,3 +6,9 @@ local opt = vim.opt
 opt.pumblend = 0
 
 vim.g["nvim_markdown_preview_format"] = "markdown"
+
+local indent_len = 4
+vim.g.expandtab = true
+vim.g.tabstop = indent_len
+vim.g.softtabstop = indent_len
+vim.g.shiftwidth = indent_len
