@@ -55,6 +55,7 @@ def ui_content_gen(_lang, project_name):
                     "building_target": "开始生成最终目标程序",
                     "target_built": "目标程序生成成功",
                     "run": "执行example",
+                    "goto_root": "回到项目根目录"
                 },
                 "input": {
                     "name": "软件包名: ",
@@ -96,6 +97,7 @@ def ui_content_gen(_lang, project_name):
                     "building_target": "Start building the final target program",
                     "target_built": "The target program builds successfully",
                     "run": "Perform example",
+                    "goto_root": "Go back to the project root"
                 },
                 "input": {
                     "name": "Package name: ",
@@ -389,7 +391,9 @@ include(CPack)"""
         println_success(self.ui_content["builder"]["example"]["target_built"])
         println(self.ui_content["builder"]["example"]["run"])
         os.system(f"./{self.package_name}")
-
+        root_path = os.path.abspath(os.path.join(build_path, "../"))
+        os.chdir(root_path)
+        println(self.ui_content["builder"]["example"]["goto_root"])
 
 def main():
     ui_content = ui_content_gen("c", "")
