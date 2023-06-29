@@ -18,6 +18,7 @@ def ui_content_gen(_lang, project_name):
         _lang: str 对应的语言
         project_name: str 项目名
     """
+
     lang = os.getenv("LANG")
     if lang is None:
         lang = "en_US.UTF-8"
