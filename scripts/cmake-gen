@@ -70,8 +70,8 @@ def ui_content_gen(_lang, project_name):
         return {
             "description": "Generate CMake projects",
             "help": {
-                "executable": "Generate executable projects",
-                "library": "Generate code library",
+                "executable": "generate executable project",
+                "library": "generate code library",
                 "empty": "Type --help to see how to use",
             },
             "builder": {
