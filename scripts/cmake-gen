@@ -13,11 +13,16 @@ version = "1.0.0"
 
 
 def ui_content_gen(_lang, project_name):
+    """生成ui界面文字
+    参数:
+        _lang: str 对应的语言
+        project_name: str 项目名
+    """
     lang = os.getenv("LANG")
     if lang is None:
         lang = "en_US.UTF-8"
     lang = lang.lower().strip()
-    library_path = os.path.abspath(f'./{project_name}.{_lang}')
+    library_path = os.path.abspath(f"./{project_name}.{_lang}")
     if lang.startswith("zh"):
         return {
             "description": "生成CMake项目",
@@ -109,35 +114,41 @@ def ui_content_gen(_lang, project_name):
 
 def println(value, end="\n"):
     """打印执行过程的信息"""
+
     print(f"\033[1:35m>\033[0m {value}", end=end)
 
 
 def println_success(value, end="\n"):
     """打印成功执行的信息"""
+
     print(f"\033[1:36m>\033[0m {value}", end=end)
 
 
 def input_color(prompt):
     """彩色提示符输入"""
+
     return input(f"\033[1;33m> \033[0m{prompt}")
 
 
 def entry_file(lang, project_name, ptype):
     """入口文件路径获取
     参数:
+        lang: str 语言
         project_name: str 项目名称
         ptype: ProjectType 项目类型，为Executable和Library
     """
+
     if ptype == ProjectType.Executable:
         return os.path.abspath(f"./main.{lang}")
     elif ptype == ProjectType.Library:
-        return os.path.abspath(f'./{project_name}.{lang}')
+        return os.path.abspath(f"./{project_name}.{lang}")
     else:
         return os.path.abspath(f"./main.{lang}")
 
 
 def eprint(str, start="", end="\n"):
     """打印错误信息到stderr"""
+
     sys.stderr.write(f"{start}\033[1;31m[ERROR]: \033[0m{str}{end}")
 
 
@@ -190,18 +201,19 @@ class Builder:
 
     def executable(self):
         """可执行程序项目生成"""
-        self.gen(ProjectType.Executable).mkdir_and_main(
-            ProjectType.Executable
-        )
+
+        self.gen(ProjectType.Executable).mkdir_and_main(ProjectType.Executable)
         if not self.entry_file_exists:
             self.build_example()
 
     def library(self):
         """代码库生成"""
+
         self.gen(ProjectType.Library).mkdir_and_main(ProjectType.Library)
 
     def cmakelist_content_executable(self):
         """生成可执行程序项目的CMakeLists.txt的内容"""
+
         return f"""cmake_minimum_required(VERSION 3.0.0)
 project({self.package_name} VERSION {self.version} LANGUAGES C CXX)
 
@@ -238,6 +250,7 @@ include(CPack)
 
     def cmakelist_content_library(self):
         """生成代码库项目的CMakeLists.txt的内容"""
+
         return f"""cmake_minimum_required(VERSION 3.0.0)
 project({self.package_name} VERSION {self.version} LANGUAGES C CXX)
 
@@ -291,6 +304,7 @@ include(CPack)"""
         参数:
             ptype: ProjectType 项目类型，为Executable和Library
         """
+
         println("")
         println(self.ui_content["builder"]["mkdir_and_main"])
         os.makedirs(src_path)
@@ -299,9 +313,17 @@ include(CPack)"""
         if os.path.exists(entry_file_path):
             self.entry_file_exists = True
             if ptype == ProjectType.Executable:
-                println(self.ui_content["builder"]["entry_file"]["entry_file_exists_executable"])
+                println(
+                    self.ui_content["builder"]["entry_file"][
+                        "entry_file_exists_executable"
+                    ]
+                )
             elif ptype == ProjectType.Library:
-                println(self.ui_content["builder"]["entry_file"]["entry_file_exists_library"])
+                println(
+                    self.ui_content["builder"]["entry_file"][
+                        "entry_file_exists_library"
+                    ]
+                )
             return self
         if ptype == ProjectType.Executable:
             with open(f"main.{self.lang}", "w") as f:
@@ -349,6 +371,7 @@ include(CPack)"""
 
     def build_example(self):
         """构建并运行可执行程序项目的example"""
+
         println("")
         println(self.ui_content["builder"]["example"]["building"])
         os.makedirs(build_path)
@@ -396,11 +419,13 @@ def main():
 
 def gen_executable():
     """生成可执行程序项目"""
+
     Builder().executable()
 
 
 def gen_library():
     """生成代码库项目"""
+
     Builder().library()
 
 
