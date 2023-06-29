@@ -1,0 +1,415 @@
+#!/usr/bin/env python3
+
+import readline as _
+import sys
+import os
+import argparse
+from enum import Enum
+
+path = os.path.abspath("./CMakeLists.txt")
+src_path = os.path.abspath("./src")
+build_path = os.path.abspath("./build")
+version = "1.0.0"
+
+
+def ui_content_gen(_lang, project_name):
+    lang = os.getenv("LANG")
+    if lang is None:
+        lang = "en_US.UTF-8"
+    lang = lang.lower().strip()
+    library_path = os.path.abspath(f'./{project_name}.{_lang}')
+    if lang.startswith("zh"):
+        return {
+            "description": "生成CMake项目",
+            "help": {
+                "executable": "生成可执行程序项目",
+                "library": "生成代码库",
+                "empty": "输入 --help 查看使用方法",
+            },
+            "builder": {
+                "finished": "初始化完成",
+                "cmakelists_exists": "CMakeLists.txt已存在，不允许覆盖",
+                "cmakelists_built": "Cmake配置创建成功，路径: ",
+                "mkdir_and_main": "正在创建源码文件夹以及入口文件",
+                "folder_built": f"源码文件夹创建成功, 路径: {src_path}",
+                "entry_file": {
+                    "entry_file_exists_library": f"library入口文件 {project_name}.{_lang} 已存在，跳过创建",
+                    "entry_file_exists_executable": f"main入口文件 main.{_lang} 已存在，跳过创建",
+                    "executable": f"main入口文件创建成功，路径: main.{_lang}",
+                    "library": f"代码库入口文件创建成功，路径: {library_path}",
+                },
+                "example": {
+                    "building": "正在构建example",
+                    "make_dir": f"生成构造后Makefile存放文件夹，路径: {build_path}",
+                    "build_final_target": "开始构建最终target",
+                    "generate_makefile": "正在生成Makefile",
+                    "entering_build_folder": "正在进入构建文件夹",
+                    "building_makefile": "开始构建",
+                    "makefile_built": "构建Makefile成功",
+                    "building_target": "开始生成最终目标程序",
+                    "target_built": "目标程序生成成功",
+                    "run": "执行example",
+                },
+                "input": {
+                    "name": "软件包名: ",
+                    "version": "软件包版本(默认0.1.0): ",
+                    "lang": "c或者cpp(默认c): ",
+                    "empty": {"name": "软件包名不能为空，请重新输入", "lang": "仅允许c和cpp，请重新输入"},
+                },
+            },
+            "key_event": {"keyboard_interrupt": "\n[Error KeyboardInterrupt] 退出程序"},
+        }
+    else:
+        return {
+            "description": "Generate CMake projects",
+            "help": {
+                "executable": "Generate executable projects",
+                "library": "Generate code library",
+                "empty": "Type --help to see how to use",
+            },
+            "builder": {
+                "finished": "Initialization completed",
+                "cmakelists_exists": "CMakeLists.txt already exists and is not allowed to be overwritten",
+                "cmakelists_built": "Cmake configuration created successfully, path: ",
+                "mkdir_and_main": "The source folder and entry file are being created",
+                "folder_built": f"Source folder created successfully, path: {src_path}",
+                "entry_file": {
+                    "entry_file_exists_library": f"library entry file {project_name}.{_lang} already exists, skip create",
+                    "entry_file_exists_executable": f"main entry file main.{_lang} already exists, skip create",
+                    "executable": f"main entry file created successfully, path: main.{_lang}",
+                    "library": f"library entry file created successfully, path: {library_path}",
+                },
+                "example": {
+                    "building": "An example is being built",
+                    "make_dir": f" After generating the Makefile storage folder, path: {build_path}",
+                    "build_final_target": "Start building the final target",
+                    "generate_makefile": "Generating Makefile",
+                    "entering_build_folder": "Entering build folder",
+                    "building_makefile": "Start building",
+                    "makefile_built": "Build Makefile successfully",
+                    "building_target": "Start building the final target program",
+                    "target_built": "The target program builds successfully",
+                    "run": "Perform example",
+                },
+                "input": {
+                    "name": "Package name: ",
+                    "version": "Package version (default 0.1.0): ",
+                    "lang": "c or cpp (default: c): ",
+                    "empty": {
+                        "name": "Package name cannot be empty, please re-enter",
+                        "lang": "Only c and cpp are allowed, please re-enter",
+                    },
+                },
+            },
+            "key_event": {
+                "keyboard_interrupt": "\n[Error KeyboardInterrupt] Quit the application"
+            },
+        }
+
+
+def println(value, end="\n"):
+    """打印执行过程的信息"""
+    print(f"\033[1:35m>\033[0m {value}", end=end)
+
+
+def println_success(value, end="\n"):
+    """打印成功执行的信息"""
+    print(f"\033[1:36m>\033[0m {value}", end=end)
+
+
+def input_color(prompt):
+    """彩色提示符输入"""
+    return input(f"\033[1;33m> \033[0m{prompt}")
+
+
+def entry_file(lang, project_name, ptype):
+    """入口文件路径获取
+    参数:
+        project_name: str 项目名称
+        ptype: ProjectType 项目类型，为Executable和Library
+    """
+    if ptype == ProjectType.Executable:
+        return os.path.abspath(f"./main.{lang}")
+    elif ptype == ProjectType.Library:
+        return os.path.abspath(f'./{project_name}.{lang}')
+    else:
+        return os.path.abspath(f"./main.{lang}")
+
+
+def eprint(str, start="", end="\n"):
+    """打印错误信息到stderr"""
+    sys.stderr.write(f"{start}\033[1;31m[ERROR]: \033[0m{str}{end}")
+
+
+class ProjectType(Enum):
+    """项目类型枚举类"""
+
+    Executable = 1
+    Library = 2
+
+
+class Builder:
+    """项目构造器"""
+
+    def __init__(self) -> None:
+        self.ui_content = ui_content_gen("c", "")
+        # CMakeLists.txt存在则退出创建，避免旧的项目配置被覆盖
+        if os.path.exists(path):
+            eprint(self.ui_content["builder"]["cmakelists_exists"])
+            exit()
+        package_name = ""
+        while True:
+            package_name = input_color(
+                self.ui_content["builder"]["input"]["name"]
+            ).strip()
+            if package_name == "":
+                eprint(self.ui_content["builder"]["input"]["empty"]["name"], end="\n\n")
+                continue
+            else:
+                break
+
+        self.package_name = package_name
+        version = input_color(self.ui_content["builder"]["input"]["version"]).strip()
+        if version == "":
+            version = "0.1.0"
+        self.version = version
+        lang = ""
+        while True:
+            lang = input_color(self.ui_content["builder"]["input"]["lang"]).strip()
+            if lang == "":
+                lang = "c"
+                break
+            if lang != "c" and lang != "cpp":
+                eprint(self.ui_content["builder"]["input"]["empty"]["lang"], end="\n\n")
+                continue
+            else:
+                break
+        self.lang = lang
+        self.ui_content = ui_content_gen(lang, package_name)
+        self.entry_file_exists = False
+
+    def executable(self):
+        """可执行程序项目生成"""
+        self.gen(ProjectType.Executable).mkdir_and_main(
+            ProjectType.Executable
+        )
+        if not self.entry_file_exists:
+            self.build_example()
+
+    def library(self):
+        """代码库生成"""
+        self.gen(ProjectType.Library).mkdir_and_main(ProjectType.Library)
+
+    def cmakelist_content_executable(self):
+        """生成可执行程序项目的CMakeLists.txt的内容"""
+        return f"""cmake_minimum_required(VERSION 3.0.0)
+project({self.package_name} VERSION {self.version} LANGUAGES C CXX)
+
+macro(FIND_INCLUDE_DIR result curdir)
+    file(GLOB_RECURSE children "${{curdir}}/*.hpp" "${{curdir}}/*.h" )
+    message(STATUS "children= ${{children}}")
+    set(dirlist "")
+    foreach(child ${{children}})
+        string(REGEX REPLACE "(.*)/.*" "\\1" LIB_NAME ${{child}})
+        if(IS_DIRECTORY ${{LIB_NAME}})
+            LIST(APPEND dirlist ${{LIB_NAME}})
+        endif()
+    endforeach()
+    set(${{result}} ${{dirlist}})
+endmacro()
+
+FIND_INCLUDE_DIR(INCLUDE_DIR_LIST ${{PROJECT_SOURCE_DIR}}/src)
+
+include_directories(
+        ${{INCLUDE_DIR_LIST}}
+)
+
+include(CTest)
+enable_testing()
+
+set(src_dir ${{PROJECT_SOURCE_DIR}}/src)
+file(GLOB_RECURSE SRC_DIR_LIST "src/*.cpp" "src/*.c")
+add_executable({self.package_name} main.{self.lang} ${{SRC_DIR_LIST}})
+
+set(CPACK_PROJECT_NAME ${{PROJECT_NAME}})
+set(CPACK_PROJECT_VERSION ${{PROJECT_VERSION}})
+include(CPack)
+"""
+
+    def cmakelist_content_library(self):
+        """生成代码库项目的CMakeLists.txt的内容"""
+        return f"""cmake_minimum_required(VERSION 3.0.0)
+project({self.package_name} VERSION {self.version} LANGUAGES C CXX)
+
+macro(FIND_INCLUDE_DIR result curdir)
+    file(GLOB_RECURSE children "${{curdir}}/*.hpp" "${{curdir}}/*.h" )
+    message(STATUS "children= ${{children}}")
+    set(dirlist "")
+    foreach(child ${{children}})
+        string(REGEX REPLACE "(.*)/.*" "\\1" LIB_NAME ${{child}})
+        if(IS_DIRECTORY ${{LIB_NAME}})
+            LIST(APPEND dirlist ${{LIB_NAME}})
+        endif()
+    endforeach()
+    set(${{result}} ${{dirlist}})
+endmacro()
+
+FIND_INCLUDE_DIR(INCLUDE_DIR_LIST ${{PROJECT_SOURCE_DIR}}/src)
+
+include_directories(
+        ${{INCLUDE_DIR_LIST}}
+)
+
+include(CTest)
+enable_testing()
+
+set(src_dir ${{PROJECT_SOURCE_DIR}}/src)
+file(GLOB_RECURSE SRC_DIR_LIST "src/*.cpp" "src/*.c")
+add_library({self.package_name} {self.package_name}.{self.lang} ${{SRC_DIR_LIST}})
+
+set(CPACK_PROJECT_NAME ${{PROJECT_NAME}})
+set(CPACK_PROJECT_VERSION ${{PROJECT_VERSION}})
+include(CPack)"""
+
+    def gen(self, ptype):
+        """保存到CMakeLists.txt
+        参数:
+            ptype: ProjectType 项目类型，为Executable和Library
+        """
+        with open(path, "w") as f:
+            if ptype == ProjectType.Executable:
+                f.write(self.cmakelist_content_executable())
+            elif ptype == ProjectType.Library:
+                f.write(self.cmakelist_content_library())
+            f.close()
+        message = self.ui_content["builder"]["cmakelists_built"]
+        println_success(f"{message}{path}")
+        return self
+
+    def mkdir_and_main(self, ptype):
+        """构建基本的代码解构
+        参数:
+            ptype: ProjectType 项目类型，为Executable和Library
+        """
+        println("")
+        println(self.ui_content["builder"]["mkdir_and_main"])
+        os.makedirs(src_path)
+        println_success(self.ui_content["builder"]["folder_built"])
+        entry_file_path = entry_file(self.lang, self.package_name, ptype)
+        if os.path.exists(entry_file_path):
+            self.entry_file_exists = True
+            if ptype == ProjectType.Executable:
+                println(self.ui_content["builder"]["entry_file"]["entry_file_exists_executable"])
+            elif ptype == ProjectType.Library:
+                println(self.ui_content["builder"]["entry_file"]["entry_file_exists_library"])
+            return self
+        if ptype == ProjectType.Executable:
+            with open(f"main.{self.lang}", "w") as f:
+                if self.lang == "c":
+                    f.write(
+                        f"""#include<stdio.h>
+
+    int main(int argc, char **argv) {{
+        printf("Hello, {self.package_name}!\\n");
+    }}"""
+                    )
+
+                elif self.lang == "cpp":
+                    f.write(
+                        f"""#include<iostream>
+
+    int main(int argc, char **argv) {{
+        std::cout << "Hello, {self.package_name}\\n";
+    }}"""
+                    )
+                f.close()
+            println_success(self.ui_content["builder"]["entry_file"]["executable"])
+        elif ptype == ProjectType.Library:
+            with open(f"{self.package_name}.{self.lang}", "w") as f:
+                if self.lang == "c":
+                    f.write(
+                        f"""#include<stdio.h>
+
+    void say_hello() {{
+        printf("Hello, from {self.package_name}!\\n");
+    }}"""
+                    )
+
+                elif self.lang == "cpp":
+                    f.write(
+                        f"""#include<iostream>
+
+    void say_hello() {{
+        std::cout << "Hello, from {self.package_name}\\n";
+    }}"""
+                    )
+                f.close()
+            println_success(self.ui_content["builder"]["entry_file"]["library"])
+        return self
+
+    def build_example(self):
+        """构建并运行可执行程序项目的example"""
+        println("")
+        println(self.ui_content["builder"]["example"]["building"])
+        os.makedirs(build_path)
+        println_success(self.ui_content["builder"]["example"]["make_dir"])
+        println(self.ui_content["builder"]["example"]["build_final_target"])
+        println(self.ui_content["builder"]["example"]["generate_makefile"])
+        println(self.ui_content["builder"]["example"]["entering_build_folder"])
+        os.chdir(build_path)
+        println(self.ui_content["builder"]["example"]["building_makefile"])
+        os.system("cmake ..")
+        println_success(self.ui_content["builder"]["example"]["makefile_built"])
+        println(self.ui_content["builder"]["example"]["building_target"])
+        os.system("make")
+        println_success(self.ui_content["builder"]["example"]["target_built"])
+        println(self.ui_content["builder"]["example"]["run"])
+        os.system(f"./{self.package_name}")
+
+
+def main():
+    ui_content = ui_content_gen("c", "")
+    parser = argparse.ArgumentParser(
+        prog="cmake-gen", description=ui_content["description"]
+    )
+    parser.add_argument(
+        "--executable", help=ui_content["help"]["executable"], action="store_true"
+    )
+    parser.add_argument(
+        "--library", help=ui_content["help"]["library"], action="store_true"
+    )
+    parser.add_argument(
+        "-v", "--version", action="version", version=version, help="display version"
+    )
+    args = parser.parse_args()
+    if args.executable:
+        gen_executable()
+    elif args.library:
+        gen_library()
+    else:
+        eprint(ui_content["help"]["empty"])
+        exit()
+
+    println("")
+    println_success(ui_content["builder"]["finished"])
+
+
+def gen_executable():
+    """生成可执行程序项目"""
+    Builder().executable()
+
+
+def gen_library():
+    """生成代码库项目"""
+    Builder().library()
+
+
+if __name__ == "__main__":
+    # 手动处理异常
+    ui_content = ui_content_gen("c", "")
+    try:
+        main()
+    except KeyboardInterrupt:
+        print(ui_content["key_event"]["keyboard_interrupt"])
+    except Exception as err:
+        print(f"\n{str(err)}")
