@@ -8,7 +8,7 @@ separator_color = "White"
 
 [custom_ascii]
 color = "Cyan"
-path = "../ascii/archlinux"
+path = "/home/sakunia/.config/macchina/ascii/archlinux"
 
 [palette]
 type = "Full"
