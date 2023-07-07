@@ -12,3 +12,4 @@ vim.o.expandtab = true
 vim.o.tabstop = indent_len
 vim.o.softtabstop = indent_len
 vim.o.shiftwidth = indent_len
+

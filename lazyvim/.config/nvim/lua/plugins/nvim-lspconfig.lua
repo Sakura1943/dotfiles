@@ -1,3 +1,5 @@
+local lspconfig = require("lspconfig")
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -15,7 +17,9 @@ return {
       autoformat = false,
       -- format = {formatting_options = nil, timeout_ms = nil},
       servers = {
-        rust_analyzer = {},
+        rust_analyzer = {
+          checkOnSave = { command = "clippy" },
+        },
         pyright = {},
         emmet_ls = {},
         gopls = {},
@@ -28,6 +32,9 @@ return {
         clangd = {},
         taplo = {},
         cssls = {},
+        slint_lsp = {
+          root_dir = lspconfig.util.root_pattern("./"),
+        },
       },
     },
     config = function(_, opts)

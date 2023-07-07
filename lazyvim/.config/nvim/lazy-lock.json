@@ -4,7 +4,7 @@
   "alpha-nvim": { "branch": "main", "commit": "9e33db324b8bb7a147bce9ea5496686ee859461d" },
   "auto-save.nvim": { "branch": "main", "commit": "979b6c82f60cfa80f4cf437d77446d0ded0addf0" },
   "bufferline.nvim": { "branch": "main", "commit": "2f391fde91b9c3876eee359ee24cc352050e5e48" },
-  "catppuccin": { "branch": "main", "commit": "cc8d3abc944d78cb6bf2a4cc88871ab383c4da62" },
+  "catppuccin": { "branch": "main", "commit": "278bfeb61bd627dc2a8885180a0441a1ebe65a41" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
@@ -56,6 +56,7 @@
   "vim-kitty": { "branch": "main", "commit": "9a90c68655d20e22f5ff249232c83ab46870f74d" },
   "vim-racket": { "branch": "master", "commit": "2c7ec0f35a2ad1ca00305e5d67837bc1f1d4b6cc" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
+  "vim-slint": { "branch": "main", "commit": "9badce3860297562bb5e80ba1666628f9e0ac632" },
   "vim-startuptime": { "branch": "master", "commit": "454b3de856b7bd298700de33d79774ca9b9e3875" },
   "which-key.nvim": { "branch": "main", "commit": "d871f2b664afd5aed3dc1d1573bef2fb24ce0484" }
 }
