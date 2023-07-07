@@ -46,6 +46,11 @@ return {
             json = "prettier",
             javascript = "prettier",
             typescript = "prettier",
+            go = {
+                cmd = "golines",
+                args = { "--max-len=80" },
+                stdin = true,
+            },
         },
         config = function(_, opts)
             local ft = require("guard.filetype")

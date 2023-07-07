@@ -6,3 +6,4 @@ local wk = require("which-key")
 
 vim.keymap.del("n", "<Leader>l")
 wk.register({ l = { name = "language" } }, { prefix = "<leader>" })
+wk.register({ S = { name = "Search(flash.nvim)" } }, { prefix = "<leader>" })
