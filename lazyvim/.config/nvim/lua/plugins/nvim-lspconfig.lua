@@ -33,7 +33,7 @@ return {
         taplo = {},
         cssls = {},
         slint_lsp = {
-          root_dir = lspconfig.util.root_pattern("./"),
+          root_dir = lspconfig.util.root_pattern(),
         },
       },
     },
