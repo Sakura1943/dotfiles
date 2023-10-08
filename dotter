@@ -69,6 +69,9 @@ function command_help() {
         "deploy")
             deplay_help_information
             ;;
+        "")
+            error "请输入${COLOR_BROWN_NOLD} '-h|--help' ${COLOR_NULL}获取帮助"
+            ;;
         *)
             error "未知命令${COLOR_BROWN_NOLD} '$1'${COLOR_NULL}, 获取帮助信息失败"
             ;;
