@@ -21,23 +21,23 @@ COLOR_GREEN_BOLD='\033[1;32m'
 COLOR_BROWN_NOLD='\033[1;33m'
 
 function info() {
-	echo -e "${COLOR_CYAN}INFO: ${COLOR_NULL} $@"
+	echo -e "${COLOR_CYAN}INFO: ${COLOR_NULL} $*"
 }
 
 function success() {
-	echo -e "${COLOR_GREEN}SUCCESS: ${COLOR_NULL} $@"
+	echo -e "${COLOR_GREEN}SUCCESS: ${COLOR_NULL} $*"
 }
 
 function warn() {
-	echo -e "${COLOR_BROWN}WARN: ${COLOR_NULL} $@"
+	echo -e "${COLOR_BROWN}WARN: ${COLOR_NULL} $*"
 }
 
 function error() {
-    echo -e "${COLOR_RED}ERROR: ${COLOR_NULL} $@" >&2
+	echo -e "${COLOR_RED}ERROR: ${COLOR_NULL} $*" >&2
 }
 
 function help() {
-    echo -e """Dotfiles 部署工具
+	echo -e """Dotfiles 部署工具
 
 ${COLOR_BROWN_NOLD}USAGE${COLOR_NULL}:
     ${BIN_NAME} <COMMAND> [...OPTIONS]
@@ -55,7 +55,7 @@ ${COLOR_BROWN_NOLD}OPTIONS${COLOR_NULL}:
 }
 
 function deplay_help_information() {
-    echo -e """部署程序
+	echo -e """部署程序
 
 ${COLOR_BROWN_NOLD}USAGE${COLOR_NULL}: ${BIN_NAME} deploy [...OPTIONS]
 
@@ -64,98 +64,123 @@ ${COLOR_BROWN_NOLD}OPTIONS${COLOR_NULL}:
 """
 }
 
+function test_help_information() {
+	echo -e """测试部署程序
+
+${COLOR_BROWN_NOLD}USAGE${COLOR_NULL}: ${BIN_NAME} test [...OPTIONS]
+
+${COLOR_BROWN_NOLD}OPTIONS${COLOR_NULL}:
+    ${COLOR_GREEN_BOLD}--url${COLOR_NULL}               dotfiles url(default: 脚本内变量\$REPOSITERY_URL)
+"""
+}
+
 function command_help() {
-    case $1 in
-        "deploy")
-            deplay_help_information
-            ;;
-        "")
-            error "请输入${COLOR_BROWN_NOLD} '-h|--help' ${COLOR_NULL}获取帮助"
-            ;;
-        *)
-            error "未知命令${COLOR_BROWN_NOLD} '$1'${COLOR_NULL}, 获取帮助信息失败"
-            ;;
-    esac
+	case $1 in
+	"deploy")
+		deplay_help_information
+		;;
+	"test")
+		test_help_information
+		;;
+	"")
+		error "请输入${COLOR_BROWN_NOLD} '-h|--help' ${COLOR_NULL}获取帮助"
+		;;
+	*)
+		error "未知命令${COLOR_BROWN_NOLD} '$1'${COLOR_NULL}, 获取帮助信息失败"
+		;;
+	esac
 }
 
 case $COMMAND in
-    "test")
-	    HOME=test
-	    info "测试..."
-        ;;
-    "-h" | "--help")
-        help
-        exit
-        ;;
-    "-V" | "--version")
-        echo "${BIN_NAME} v${VERSION}"
-        exit
-        ;;
-    "help")
-        command_help ${OPTION1}
-        exit
-        ;;
-    "deploy")
-        case ${OPTION1} in
-            "--url")
-                REPOSITERY_URL=${OPTION2}
-            ;;
-            "")
-            ;;
-            *)
-                error "未知参数${COLOR_BROWN_NOLD} '${OPTION1}'${COLOR_NULL}, 请输入${COLOR_BROWN_NOLD} 'help deploy' ${COLOR_NULL} 获取帮助"
-                exit
-            ;;
-        esac
-        ;;
-    *)
-        if [[ $COMMAND == "" ]]; then
-            error "请输入${COLOR_BROWN_NOLD} '-h|--help' ${COLOR_NULL}获取帮助"
-        else
-            error "未知命令${COLOR_BROWN_NOLD} '${COMMAND}' ${COLOR_NULL}, 请输入${COLOR_BROWN_NOLD} '-h|--help' ${COLOR_NULL}获取帮助"
-        fi
-        exit
+"test")
+	HOME="test"
+	case "${OPTION1}" in
+	"--url")
+		REPOSITERY_URL="${OPTION2}"
+		;;
+	"") ;;
+	*)
+		error "未知参数${COLOR_BROWN_NOLD} '${OPTION1}'${COLOR_NULL}, 请输入${COLOR_BROWN_NOLD} 'help test' ${COLOR_NULL} 获取帮助"
+		exit
+		;;
+	esac
+
+	info "测试..."
+	;;
+"-h" | "--help")
+	help
+	exit
+	;;
+"-V" | "--version")
+	echo "${BIN_NAME} v${VERSION}"
+	exit
+	;;
+"help")
+	command_help "$OPTION1"
+	exit
+	;;
+"deploy")
+	case "${OPTION1}" in
+	"--url")
+		REPOSITERY_URL="${OPTION2}"
+		;;
+	"") ;;
+	*)
+		error "未知参数${COLOR_BROWN_NOLD} '${OPTION1}'${COLOR_NULL}, 请输入${COLOR_BROWN_NOLD} 'help deploy' ${COLOR_NULL} 获取帮助"
+		exit
+		;;
+	esac
+	;;
+*)
+	if [[ "$COMMAND" == "" ]]; then
+		error "请输入${COLOR_BROWN_NOLD} '-h|--help' ${COLOR_NULL}获取帮助"
+	else
+		error "未知命令${COLOR_BROWN_NOLD} '${COMMAND}' ${COLOR_NULL}, 请输入${COLOR_BROWN_NOLD} '-h|--help' ${COLOR_NULL}获取帮助"
+	fi
+	exit
+	;;
 esac
 
 DOTTERFILES_PATH="$HOME/.local/share/dotfiles"
 info "HOME: $HOME"
 info "SHELL: ${SHELL##*/}"
+info "REPOSITERY_URL: ${REPOSITERY_URL}"
 
 function create_folder_that_does_not_exists() {
 	if [[ $(ls -l $1 2>/dev/null | wc -l) == 0 ]]; then
-        warn "路径: '$1' 不存在，正在创建"
+		warn "路径: '$1' 不存在，正在创建"
 		mkdir -p $1
-        if [[ $? == 0 ]]; then
-            success "路径: '$1' 创建成功"
-        else
-            error "Status code: $?"
-            exit
-        fi
+		if [[ $? == 0 ]]; then
+			success "路径: '$1' 创建成功"
+		else
+			error "Status code: $?"
+			exit
+		fi
 	fi
 }
 
 function copy_to_target() {
-    info "正在拷贝 '${2}' 到 '$1'"
-    cp -rf ${@:3} $1
-    if [[ $? == 0 ]]; then
-        success "成功将 '${2}' 拷贝到 '$1'"
-    else
-        error "Status code: $?"
-        exit
-    fi
+	info "正在拷贝 '${2}' 到 '$1'"
+	cp -rf ${@:3} $1
+	if [[ $? == 0 ]]; then
+		success "成功将 '${2}' 拷贝到 '$1'"
+	else
+		error "Status code: $?"
+		exit
+	fi
 }
 
 if [[ $(ls -l $DOTTERFILES_PATH 2>/dev/null | wc -l) == 0 ]]; then
 	info "克隆配置文件仓库"
 	git clone "$REPOSITERY_URL" $DOTTERFILES_PATH
-    if [[ $? == 0 ]]; then
-        success "创建仓库成功, 路径: $DOTTERFILES_PATH"
-    else
-        error "Status code: $?"
-        exit
-    fi
+	if [[ $? == 0 ]]; then
+		success "创建仓库成功, 路径: $DOTTERFILES_PATH"
+	else
+		error "Status code: $?"
+		exit
+	fi
 else
-    warn "配置文件仓库存在"
+	warn "配置文件仓库存在"
 fi
 
 copy_to_target "$HOME/.bashrc" "$DOTTERFILES_PATH/.bashrc" "$DOTTERFILES_PATH/.bashrc"
@@ -176,10 +201,10 @@ copy_to_target "$HOME/.scripts" "$DOTTERFILES_PATH/scripts" $DOTTERFILES_PATH/sc
 echo 'export PATH=$PATH:$HOME/.scripts' >>"$HOME/.bashrc"
 info "echo 'export PATH=\$PATH:$HOME/.scripts' >> \"$HOME/.bashrc\""
 
-if [[  ${SHELL##*/} == "bash" ]]; then
+if [[ ${SHELL##*/} == "bash" ]]; then
 	source "$HOME/.bashrc"
-    info "source \"$HOME/.bashrc\""
-elif [[  ${SHELL##*/} == "zsh" ]]; then
+	info "source \"$HOME/.bashrc\""
+elif [[ ${SHELL##*/} == "zsh" ]]; then
 	source "$HOME/.zshrc"
-    info "source \"$HOME/.zshrc\""
+	info "source \"$HOME/.zshrc\""
 fi
