@@ -2,6 +2,7 @@ local M = {
     table = {},
     vim = {},
     string = {},
+    treesitter = {},
 }
 
 -- 表扩充，浅拷贝，键冲突时采用other
@@ -22,6 +23,14 @@ end
 -- 判断字符串末尾是否匹配指定模式
 function M.string.ends_with(str, pat)
     return str:sub(-#pat) == pat
+end
+
+-- 检测缓冲区是否有treesitter解析器，是则执行所传入函数
+function M.treesitter.try_exec(f)
+    local ok, _ = pcall(vim.treesitter.get_parser)
+    if ok then
+        f()
+    end
 end
 
 return M
