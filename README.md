@@ -12,7 +12,8 @@
 ./dotter --help
 ./dotter help deploy
 ./dotter deploy
-./dotter deploy --url "xxxxxxxxxxxxxxxxx"
+# custom git repository url
+./dotter deploy --url "https://github.com/username/dotfiles.git"
 ```
 
 # Personal configuration
