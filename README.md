@@ -12,8 +12,8 @@
 ./dotter --help
 ./dotter help deploy
 ./dotter deploy
-# custom git repository url
-./dotter deploy --url "https://github.com/username/dotfiles.git"
+# set proxy url
+./dotter deploy --url "https://proxy.xxx.xx/https://github.com/Sakura1943/dotfiles.git"
 ```
 
 # Personal configuration
