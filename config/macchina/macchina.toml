@@ -18,14 +18,8 @@ current_shell = true
 # processor.
 physical_cores = true
 
-# Display percentage next to memory usage
-memory_percentage = true
-
-# Display percentage next to disk space usage
-disk_space_percentage = true
-
 show = [ "Host", "Machine", "Kernel", "Distribution",
     "OperatingSystem", "DesktopEnvironment", "WindowManager",
     "Shell", "Terminal", "Resolution", "Packages", "Processor",
-    "GPU", "Memory", "Battery", "DiskSpace", "Uptime"
+    "Memory", "Battery", "Uptime"
 ]
