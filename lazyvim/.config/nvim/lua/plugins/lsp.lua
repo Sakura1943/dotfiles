@@ -1,3 +1,5 @@
+local home = os.getenv("HOME")
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -15,7 +17,18 @@ return {
 			},
 			--@type lspconfig.options
 			servers = {
-				lua_ls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							workspace = {
+								library = {
+									"/usr/share/lua/5.1",
+									home .. "/.luarocks/share/lua/5.1",
+								},
+							},
+						},
+					},
+				},
 				clangd = {},
 				rust_analyzer = {},
 				texlab = {},
@@ -29,6 +42,7 @@ return {
 					root_dir = require("lspconfig").util.root_pattern(),
 				},
 				zls = {},
+				intelephense = {},
 			},
 		},
 		config = function(_, opts)
